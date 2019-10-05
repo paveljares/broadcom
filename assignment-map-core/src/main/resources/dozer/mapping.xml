@@ -7,4 +7,41 @@
     	http://dozer.sourceforge.net/schema/beanmapping.xsd
     ">
 
+	<mapping map-null="false">
+		<class-a>java.util.Map</class-a>
+		<class-b>cz.jares.pavel.dto.PageInfo</class-b>
+		<field>
+			<a key="page">this</a>
+			<b>pageNumber</b>
+		</field>
+		<field>
+			<a key="size">this</a>
+			<b>pageSize</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>cz.jares.pavel.dto.geoname.Result</class-a>
+		<class-b>cz.jares.pavel.dto.ResultSet</class-b>
+		<field>
+			<a>items</a>
+			<b>items</b>
+			<a-hint>cz.jares.pavel.dto.geoname.City</a-hint>
+			<b-hint>cz.jares.pavel.dto.City</b-hint>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>cz.jares.pavel.dto.geoname.City</class-a>
+		<class-b>cz.jares.pavel.dto.City</class-b>
+		<field>
+			<a>longitude</a>
+			<b>gps.longitude</b>
+		</field>
+		<field>
+			<a>latitude</a>
+			<b>gps.latitude</b>
+		</field>
+	</mapping>
+
 </mappings>

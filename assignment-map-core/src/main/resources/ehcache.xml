@@ -2,5 +2,7 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" name="assignmentMapEhCache">    
 
     <defaultCache eternal="true" maxElementsInMemory="100" overflowToDisk="false" />           
-	    
+	
+	<cache name="mapResultData" maxElementsInMemory="1000" overflowToDisk="false" timeToLiveSeconds="600" copyOnWrite="true" copyOnRead="true" />
+	
  </ehcache>

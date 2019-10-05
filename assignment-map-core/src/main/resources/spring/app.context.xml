@@ -22,6 +22,30 @@
     	</property>
     </bean>
 
+	<!-- property place holder -->
+	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <bean class="org.springframework.core.io.FileSystemResource">
+ 					<constructor-arg>
+ 						<bean class="org.springframework.jndi.JndiObjectFactoryBean">
+ 							<property name="jndiName" value="java:/env/assignmentMapConfig" />
+ 							<property name="resourceRef" value="true" />
+ 						</bean>
+ 					</constructor-arg>
+ 				</bean>
+ 				<bean class="org.springframework.core.io.ClassPathResource">
+ 					<constructor-arg value="META-INF/app.properties" />
+ 				</bean>
+            </list>
+        </property>
+    </bean>
+
+	<!-- application configuration -->
+	<bean id="configDto" class="cz.jares.pavel.web.controller.dto.ConfigDto">
+		<property name="gmapApiKey" value="${gmap.apikey}" />
+	</bean>
+
 	<!-- EhCache -->
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">   
 		<property name="cacheManager" ref="ehcache"/>
@@ -35,7 +59,7 @@
 	<bean id="org.dozer.Mapper" class="org.dozer.DozerBeanMapper">
 		<property name="mappingFiles">
 			<list>
-				<value>dozer/mapping.xml</value>
+				<value>META-INF/dozer/mapping.xml</value>
 			</list>
 		</property>
 	</bean>

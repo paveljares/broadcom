@@ -3,3 +3,4 @@
 *.bak
 .classpath
 target
+test-output

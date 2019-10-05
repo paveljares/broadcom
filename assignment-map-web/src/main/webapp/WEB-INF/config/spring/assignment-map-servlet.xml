@@ -2,19 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
-        http://www.springframework.org/schema/aop 
-		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
     ">
 
     <!-- MVC -->
     
     <mvc:default-servlet-handler/>
-    
+        
 	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
 		<mvc:message-converters>
 		    <bean parent="jsonHttpMessageConverter" />
@@ -23,13 +20,21 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
+	<!-- swagger -->
+	<mvc:resources order="1" location="/resources/" mapping="/resources/**" />
+	<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
+	
+	<!-- application web layer -->
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
 	<mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
 	<mvc:resources mapping="/image/**" location="/WEB-INF/image/" />
 	<mvc:resources mapping="/**/*.html" location="/WEB-INF/html/" />
-
+	
 	<context:component-scan base-package="cz.jares.pavel.web.controller" />
-		
+	
+	<bean id="swagger2Config" class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration" />
+	
 	<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter" />
 	<bean id="byteArrayHttpMessageConverter" class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
 	<bean id="defaultTypingObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" >		
@@ -118,7 +123,5 @@
 	    class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
 	    <property name="defaultLocale" value="cs"/>
 	</bean>
-	
-	<aop:aspectj-autoproxy/>
-	
+		
 </beans>
