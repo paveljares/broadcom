@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="suite1" parallel="tests" thread-count="1" verbose="2" group-by-instances="true">
+
+	<test name="test01" >
+		<packages>
+			<package name="cz.jares.pavel.*" />
+		</packages>
+	</test>
+
+</suite>

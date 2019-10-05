@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/maven-v4_0_0.xsd
+	">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>assignment-map</artifactId>
+	<name>Assignment - Cites on map</name>
+	<groupId>cz.jares.pavel</groupId>
+	<packaging>pom</packaging>
+	<version>1.0.0.0-SNAPSHOT</version>
+
+	<organization>
+		<name>Pavel Jareš</name>
+	</organization>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  		<spring.version>4.2.4.RELEASE</spring.version>
+	</properties>
+
+	<scm>
+		<connection>scm:hg:ssh://172.16.128.31//var/mercurial/admin</connection>
+		<developerConnection>scm:hg:ssh://172.16.128.31//var/mercurial/admin</developerConnection>
+	</scm>
+
+	<modules>
+		<module>assignment-map-core</module>
+		<module>assignment-map-web</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addClasspath>true</addClasspath>
+							</manifest>
+							<manifestEntries>
+								<Implementation-Revision>${scm.revision}</Implementation-Revision>
+								<Implementation-Timestamp>${build.timestamp}</Implementation-Timestamp>
+							</manifestEntries>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<verbose>false</verbose>
+						<fork>true</fork>
+						<compilerVersion>1.7</compilerVersion>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addClasspath>true</addClasspath>
+							</manifest>
+							<manifestEntries>
+								<Implementation-Revision>${scm.revision}</Implementation-Revision>
+								<Implementation-Timestamp>${build.timestamp}</Implementation-Timestamp>
+							</manifestEntries>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<!-- goal: source:jar -->
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.2.1</version>
+					<configuration>
+						<attach>true</attach>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.9.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<encoding>UTF8</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- spring dependencies -->
+			<dependency>
+		        <groupId>org.springframework</groupId>
+		        <artifactId>spring-context</artifactId>
+		        <version>${spring.version}</version>
+		        <exclusions>
+				    <!--Exclude Commons Logging in favor of SLF4j--> 
+				    <exclusion>
+				      <groupId>commons-logging</groupId>
+				      <artifactId>commons-logging</artifactId>
+				    </exclusion>
+				</exclusions>
+				<scope>compile</scope>
+		    </dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+		        <groupId>org.springframework.ws</groupId>
+	    		<artifactId>spring-ws-core</artifactId>
+	    		<version>2.2.4.RELEASE</version>
+				<scope>compile</scope>
+		    </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+                <scope>compile</scope>
+            </dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.6</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-jdk14</artifactId>
+				<version>1.7.6</version>
+				<scope>compile</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+				<version>1.1.2</version>
+				<scope>compile</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<scope>provided</scope>
+				<version>2.4.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<scope>provided</scope>
+				<version>2.4.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<scope>provided</scope>
+				<version>2.4.1</version>
+			</dependency>
+			
+			<!-- common -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.6</version>
+				<scope>provided</scope>
+			</dependency>
+			
+            <dependency>
+			    <groupId>commons-httpclient</groupId>
+			    <artifactId>commons-httpclient</artifactId>
+			    <version>3.1</version>
+			</dependency>
+            
+		    <dependency>
+				<groupId>net.sf.dozer</groupId>
+				<artifactId>dozer</artifactId>
+				<version>5.5.1</version>
+			</dependency>
+									
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.testng</groupId>
+				<artifactId>testng</artifactId>
+				<version>6.8.7</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jacoco</groupId>
+				<artifactId>org.jacoco.core</artifactId>
+				<version>0.8.4</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jacoco</groupId>
+				<artifactId>org.jacoco.report</artifactId>
+				<version>0.8.4</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>1.9.5</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>maven</id>
+			<name>Maven repository for releases</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+	</repositories>
+
+</project>
