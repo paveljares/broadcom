@@ -39,6 +39,19 @@ public class MapController {
 	private MapService mapService;
 	
 	/**
+	 *  Same method like {@link MapController#search(String, Map)}, just this method find all values
+	 * because there is missing filtering string.
+	 * 
+	 * @param parameters
+	 * @return
+	 */
+	@RequestMapping(value="/search", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResultSet<City> search(@RequestParam Map<String, String> parameters) {
+		return search(new String(), parameters);
+	}
+	
+	/**
 	 *  This method find all cities, which are mathing to the search pattern in attribute text. Search
 	 * result using paging via attributes page and size. They are fetch from URL parameters.
 	 *  If size of page is zero or less, it will be ignored. Page is counted from zero and negative value

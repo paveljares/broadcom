@@ -2,12 +2,66 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="./js/script.js"></script>
+		<link href="./css/style.css" rel="stylesheet"></link>
 	</head>
 
-	<body>
+	<body onload="window.App.init()">
 
+		<!-- header -->
 		<h1>Assignment map</h1>
 		<b>Author: Pavel Jareš</b>
+
+		<br/><br/>
+
+		<!-- base part - search, list and map -->
+		<div class="table">
+			<!-- in left column is search, list and paging -->
+			<div class="left">
+				<!-- field to search -->
+				Search: <input type="text" id="search" placeholder="Entry city name" />
+				
+				<!-- list of cities -->
+				<table id="citiesList">
+					<thead>
+						<th>Country</th>
+						<th>City</th>
+						<th>Population</th>
+					</thead>
+					<tbody>
+					
+					</tbody>
+				</table>
+				<i><a class="show-all hidden">Show all on map</a></i>
+				
+				<br/><br/>
+				
+				<!-- pagging -->
+				<div>
+					Page size:
+					<select name="size">
+						<option value="10" selected="selected">10</option>
+						<option value="20">20</option>
+						<option value="30">30</option>
+					</select>
+				</div>
+				<div>
+					<div class="prev"><a class="hidden">previous</a></div>
+					(<span class="page"></span>)
+					<div class="next"><a class="hidden">next</a></div> 
+				</div>
+			</div>
+			
+			<!-- right part - GMap  -->
+			<div class="right">
+				<div id="map"></div>
+			</div>
+		</div>
+
+		<!-- show version in right bottom corner -->
+		<div class="version-wrapper">Version <span class="version"></span></div>
 
 	</body>
 </html>

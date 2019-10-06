@@ -1,0 +1,62 @@
+
+h1 {
+	font-size: 24px;
+}
+
+.table {
+	width: 100%;
+	position: relative;
+}
+
+.table .left {
+	float: left;
+	width: 20%;
+}
+
+.table .left .prev, .table .left .next {
+	min-width: 100px;
+	display: inline-block;
+}
+
+.table .left .next {
+	text-align: right;
+}
+
+.table .page {
+	min-width: 50px;
+	text-align: center;
+}
+
+.table .right {
+	width: 80%;
+}
+
+.hidden {
+	display: none;
+}
+
+.version-wrapper {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+}
+
+a, .table .left table tbody td {
+	cursor: pointer;
+}
+
+.left table, .left table td, .left table th  {
+	border: solid 1px silver;
+}
+
+a.show-all {
+	color: blue;
+	text-decoration: underline;
+	font-size: 10px;
+}
+
+#map {
+	width: auto;
+	max-height: 100vh;
+	min-height: 80vh;	
+}

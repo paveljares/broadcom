@@ -51,6 +51,9 @@ public class MapServiceImplTest {
 	@Value("${geonames.username}")
 	private String username;
 	
+	@Value("${geonames.featureClass}")
+	private String featureClass;
+	
 	@Before
 	@After
 	public void evictCache() {
@@ -142,6 +145,7 @@ public class MapServiceImplTest {
 		params.put("q", q);
 		params.put("maxRows", maxRows);
 		params.put("startRow", startRow);
+		params.put("featureClass", featureClass);
 		
 		HttpUtils.assertUri(endpoint, params, url);
 	}
@@ -168,6 +172,7 @@ public class MapServiceImplTest {
 		public MapServiceImplWrapper() {
 			ReflectionTestUtils.setField(this, "endpoint", endpoint);
 			ReflectionTestUtils.setField(this, "username", username);
+			ReflectionTestUtils.setField(this, "featureClass", featureClass);
 		}
 		
 		@Override

@@ -62,6 +62,7 @@ public class MapControllerTest {
 		addParameterTest(1, 1, 5, "test");
 		addParameterTest(2, 10, 20, "test2");
 		addParameterTest(3, 0, 0, "test3");
+		addParameterTest(4, 8, 0, "");
 	}
 
 	@Test
@@ -77,6 +78,11 @@ public class MapControllerTest {
 		mockMvc	.perform(get("/map/search/test3"))
 				.andExpect(status().isOk())
 				.andExpect(content().json("{'size':3}"));
+		
+		mockMvc	.perform(get("/map/search?page=8"))
+		.andExpect(status().isOk())
+		.andExpect(content().json("{'size':4}"));
+		
 	}
 	
 }

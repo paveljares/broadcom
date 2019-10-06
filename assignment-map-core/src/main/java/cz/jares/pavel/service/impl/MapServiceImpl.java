@@ -27,6 +27,9 @@ public class MapServiceImpl implements MapService {
 	@Value("${geonames.username}")
 	private String username;
 	
+	@Value("${geonames.featureClass}")
+	private String featureClass;
+	
 	@Autowired
 	private RestTemplate restTemplate;
 	
@@ -43,7 +46,8 @@ public class MapServiceImpl implements MapService {
 	protected String getUri(String name, Pageable pageable) {
 		final UriComponentsBuilder builder=UriComponentsBuilder.fromHttpUrl(endpoint);
 		builder	.queryParam("username", username)
-				.queryParam("q", name==null?new String():name);
+				.queryParam("q", name==null?new String():name)
+				.queryParam("featureClass", featureClass);
 		
 		if (pageable!=null) {
 			if (pageable.getPageSize()>0) {
