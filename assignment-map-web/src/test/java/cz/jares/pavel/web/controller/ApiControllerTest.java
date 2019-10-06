@@ -12,8 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -28,7 +28,7 @@ import cz.jares.pavel.web.controller.dto.ConfigDto;
  * @author jaresp
  *
  */
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class ApiControllerTest {
 	
 	private int evictCounter;
@@ -76,4 +76,5 @@ public class ApiControllerTest {
 				.andExpect(status().isOk());
 		Assert.assertEquals(1, evictCounter);
 	}
+	
 }

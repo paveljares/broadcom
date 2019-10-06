@@ -13,6 +13,8 @@ Application will be available on http://<host>:<port>/assignment-map-web/index.h
 
 Used technologies:
 - Spring (bean, boot, mvc)
+- Dozer
+- ehCache
 - Mockito
 - JUnit, JaCoCo
 - Maven
